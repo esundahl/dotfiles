@@ -7,6 +7,6 @@ unset file
 
 # Custom Prompt
 function prompt () {
-  PS1='\[$($HOME/.dotfiles/lib/bash_prompt.js)\] →  '
+  PS1='\[$($HOME/.dotfiles/lib/git-prompt.js)\] →  '
 }
 PROMPT_COMMAND=prompt
