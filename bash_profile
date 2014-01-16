@@ -4,4 +4,9 @@ for file in "$HOME"/.dotfiles/shrc/*.sh; do
 done
 unset file
 
-PROMPT_COMMAND='PS1="\[$($HOME/.dotfiles/lib/bash_prompt.js)\]"'
+
+# Custom Prompt
+function prompt () {
+  PS1='\[$($HOME/.dotfiles/lib/bash_prompt.js)\] →  '
+}
+PROMPT_COMMAND=prompt
