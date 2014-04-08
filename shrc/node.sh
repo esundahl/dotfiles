@@ -1,3 +1,1 @@
-
-# Increases the ulimit to avoid EMFILE error
-ulimit -n 1000
+source $(brew --prefix nvm)/nvm.sh
