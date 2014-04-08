@@ -2,7 +2,7 @@
 
 export MARKPATH=$HOME/.marks
 
-function jump {
+function j {
   cd -P $MARKPATH/$1 2>/dev/null || echo "No such mark: $1"
 }
 
