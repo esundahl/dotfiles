@@ -11,6 +11,8 @@ alias gb='git branch'
 alias gba='git branch -a'
 alias ga='git add'
 alias gco='git checkout'
+alias gcom='git checkout master'
+alias gcod='git checkout develop'
 ##################################
 
 
