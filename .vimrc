@@ -17,6 +17,9 @@ Plugin 'chrisbra/csv.vim'
 Plugin 'mmalecki/vim-node.js'
 Plugin 'groenewege/vim-less'
 
+" Themes
+Plugin 'esundahl/vim-pastel'
+
 " Tools
 Plugin 'tpope/vim-unimpaired'
 Plugin 'ervandew/supertab'
@@ -34,36 +37,43 @@ Plugin 'ap/vim-css-color'
 Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-repeat'
-Plugin 'honza/vim-snippets'
+Plugin 'msanders/snipmate.vim'
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'bling/vim-airline'
+Plugin 'esundahl/vim-snippets'
 
 " Required for Vundle
 filetype plugin indent on
+
+" Theme
+colorscheme pastel
+highlight SignColumn ctermbg=black
+let g:airline_theme='bubblegum'
 
 " Set the mapleader key
 let mapleader = ","
 
 " Basic Setup
-set nocompatible		" Use vim, no vi defaults
-set number			" Show line numbers
-set ruler			" Show line and column number
-syntax enable			" Turn on syntax highlighting allowing local overrides
-set encoding=utf-8		" Set default encoding to UTF-8
+set nocompatible                  " Use vim, no vi defaults
+set number                        " Show line numbers
+set ruler                         " Show line and column number
+syntax enable                     " Turn on syntax highlighting allowing local overrides
+set encoding=utf-8                " Set default encoding to UTF-8
 
 " Whitespace
-set nowrap			" don't wrap lines
-set tabstop=2			" a tab is two spaces
-set shiftwidth=2		" an autoindent (with <<) is two spaces
-set expandtab			" use spaces, not tabs
-set list			" Show invisible characters
-set backspace=indent,eol,start 	" backspace through everything in insert mode
+set nowrap                        " don't wrap lines
+set tabstop=2                     " a tab is two spaces
+set shiftwidth=2                  " an autoindent (with <<) is two spaces
+set expandtab                     " use spaces, not tabs
+set list                          " Show invisible characters
+set backspace=indent,eol,start    " backspace through everything in insert mode
 
 " Searching
-set hlsearch 			" highlight matches
-set incsearch 			" incremental searching
-set ignorecase 			" searches are case insensitive...
-set smartcase 			" ... unless they contain at least one capital letter
+set hlsearch                      " highlight matches
+set incsearch                     " incremental searching
+set ignorecase                    " searches are case insensitive...
+set smartcase                     " ... unless they contain at least one capital letter
 
 " File Types
 if has("autocmd")
@@ -150,13 +160,13 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
-" Use the arrows to something usefull
+" Use arrows for buffer switching
 map <right> :bn<cr>
 map <left> :bp<cr>
 
 " Saving & Quitting
 nmap <C-w> :w<CR>
-nmap <C-x> :wq<CR>
+nmap <C-c> :wq<CR>
 
 " Strip Whitespace on Save
 autocmd BufWritePre * :%s/\s\+$//e
@@ -181,5 +191,3 @@ nmap <Leader><Leader>gw :Gwrite<CR>
 " EasyMotion
 let g:EasyMotion_leader_key = '<Leader>'
 
-" GitGutter
-highlight SignColumn ctermbg=black
