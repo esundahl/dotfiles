@@ -4,7 +4,7 @@
 alias ll="ls -loaGh"
 alias prj='cd ~/projects'
 alias bashp='vim ~/.bash_profile'
-alias vimrc='vim ~/.vimrc.after'
+alias vimrc='vim ~/.dotfiles/.vimrc'
 alias vimcs='vim ~/Dropbox/settings/vim/cheat_sheet.md'
 alias notes='vim ~/Dropbox/notes/'
 alias v='vim'
