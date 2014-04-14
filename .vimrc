@@ -155,10 +155,10 @@ if has("statusline") && !&cp
 endif
 
 " Smart way to move btw. windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
+map <C-j> :wincmd j<CR>
+map <C-k> :wincmd k<CR>
+map <C-h> :wincmd h<CR>
+map <C-l> :wincmd l<CR>
 
 " Use arrows for buffer switching
 map <right> :bn<cr>
