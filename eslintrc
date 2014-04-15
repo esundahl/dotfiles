@@ -1,0 +1,12 @@
+{
+  "rules": {
+    "semi": false,
+    "no-undef": false,
+    "quotes": false,
+    "no-use-before-define": false,
+    "strict": false,
+    "no-console": false,
+    "curly": false,
+    no-unused-vars": false
+  }
+}

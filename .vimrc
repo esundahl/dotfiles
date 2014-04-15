@@ -189,3 +189,5 @@ nmap <Leader><Leader>gw :Gwrite<CR>
 " EasyMotion
 let g:EasyMotion_leader_key = '<Leader>'
 
+" Syntastic
+let g:syntastic_javascript_checkers = ['eslint']
