@@ -7,6 +7,6 @@
     "strict": false,
     "no-console": false,
     "curly": false,
-    no-unused-vars": false
+    "no-unused-vars": false
   }
 }
