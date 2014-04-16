@@ -15,4 +15,5 @@ alias jh='jump home'
 alias jc='jump code'
 alias jp='jump projects'
 alias jj='jump janus'
+alias sim='open /Applications/Xcode.app/Contents/Applications/iPhone\ Simulator.app'
 ##################################
