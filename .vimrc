@@ -16,6 +16,8 @@ Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'chrisbra/csv.vim'
 Plugin 'mmalecki/vim-node.js'
 Plugin 'groenewege/vim-less'
+Plugin 'wavded/vim-stylus'
+Plugin 'digitaltoad/vim-jade'
 
 " Themes
 Plugin 'esundahl/vim-pastel'
@@ -40,6 +42,7 @@ Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'bling/vim-airline'
 Plugin 'esundahl/vim-snippets'
+Plugin 'scrooloose/nerdcommenter'
 
 " Required for Vundle
 filetype plugin indent on
