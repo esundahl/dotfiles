@@ -23,7 +23,6 @@ Plugin 'digitaltoad/vim-jade'
 Plugin 'esundahl/vim-pastel'
 
 " Tools
-Plugin 'ervandew/supertab'
 Plugin 'scrooloose/syntastic'
 Plugin 'itspriddle/ZoomWin'
 Plugin 'mileszs/ack.vim'
