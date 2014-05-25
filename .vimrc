@@ -18,6 +18,7 @@ Plugin 'mmalecki/vim-node.js'
 Plugin 'groenewege/vim-less'
 Plugin 'wavded/vim-stylus'
 Plugin 'digitaltoad/vim-jade'
+Plugin 'mustache/vim-mustache-handlebars'
 
 " Themes
 Plugin 'esundahl/vim-pastel'
