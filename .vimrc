@@ -43,6 +43,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'bling/vim-airline'
 Plugin 'esundahl/vim-snippets'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'spolu/dwm.vim'
 
 " Required for Vundle
 filetype plugin indent on
@@ -194,3 +195,8 @@ let g:EasyMotion_leader_key = '<Leader>'
 
 " Syntastic
 let g:syntastic_javascript_checkers = ['eslint']
+
+" DWM
+let g:dwm_map_keys=0
+nmap <C-n> :call DWM_New()<CR>
+nmap <C-f> :call DWM_Focus()<CR>
