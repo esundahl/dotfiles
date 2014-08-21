@@ -19,6 +19,7 @@ Plugin 'groenewege/vim-less'
 Plugin 'wavded/vim-stylus'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'junegunn/vim-easy-align'
 
 " Themes
 Plugin 'esundahl/vim-pastel'
@@ -200,3 +201,9 @@ let g:syntastic_javascript_checkers = ['eslint']
 let g:dwm_map_keys=0
 nmap <C-n> :call DWM_New()<CR>
 nmap <C-f> :call DWM_Focus()<CR>
+
+" Easy Align
+" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+vmap <Enter> <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. <Leader>aip)
+ nmap <Leader>a <Plug>(EasyAlign)
