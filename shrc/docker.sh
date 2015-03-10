@@ -1,1 +1,3 @@
-export DOCKER_HOST=tcp://127.0.0.1:4243
+
+alias docker-rma="docker rm $(docker ps -a -q)"
+alias docker-stopa="docker stop $(docker ps -a -q)"
