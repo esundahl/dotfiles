@@ -1,3 +1,3 @@
-
-alias docker-rma="docker rm $(docker ps -a -q)"
-alias docker-stopa="docker stop $(docker ps -a -q)"
+export DOCKER_HOST=tcp://192.168.59.103:2376
+export DOCKER_CERT_PATH=/Users/esundahl/.boot2docker/certs/boot2docker-vm
+export DOCKER_TLS_VERIFY=1
