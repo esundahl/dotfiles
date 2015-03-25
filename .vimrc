@@ -20,6 +20,7 @@ Plugin 'wavded/vim-stylus'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'junegunn/vim-easy-align'
+Plugin 'fatih/vim-go'
 
 " Themes
 Plugin 'esundahl/vim-pastel'
@@ -31,7 +32,6 @@ Plugin 'mileszs/ack.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'tpope/vim-surround'
-Plugin 'scrooloose/syntastic'
 Plugin 'majutsushi/tagbar'
 Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'tpope/vim-endwise'
@@ -45,6 +45,7 @@ Plugin 'bling/vim-airline'
 Plugin 'esundahl/vim-snippets'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'spolu/dwm.vim'
+Plugin 'SirVer/ultisnips'
 
 " Required for Vundle
 filetype plugin indent on
@@ -69,7 +70,7 @@ set nowrap                        " don't wrap lines
 set tabstop=2                     " a tab is two spaces
 set shiftwidth=2                  " an autoindent (with <<) is two spaces
 set expandtab                     " use spaces, not tabs
-set list                          " Show invisible characters
+set nolist                        " Hide invisible characters
 set backspace=indent,eol,start    " backspace through everything in insert mode
 
 " Searching
@@ -190,6 +191,21 @@ nmap <Leader><Leader>gl :Glog<CR>
 nmap <Leader><Leader>gc :Gcommit<CR>
 nmap <Leader><Leader>gp :Git push<CR>
 nmap <Leader><Leader>gw :Gwrite<CR>
+
+" Go-VIM
+au FileType go nmap <leader><leader>r <Plug>(go-run)
+au FileType go nmap <leader><leader>b <Plug>(go-build)
+au FileType go nmap <leader><leader>t <Plug>(go-test)
+au FileType go nmap <leader><leader>c <Plug>(go-coverage)
+au FileType go nmap <Leader><leader>ds <Plug>(go-def-split)
+au FileType go nmap <Leader><leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <Leader><leader>dt <Plug>(go-def-tab)
+au FileType go nmap <Leader><leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader><leader>gv <Plug>(go-doc-vertical)
+au FileType go nmap <Leader><leader>gb <Plug>(go-doc-browser)
+au FileType go nmap <Leader><leader>s <Plug>(go-implements)
+au FileType go nmap <Leader><leader>i <Plug>(go-info)
+au FileType go nmap <Leader><leader>e <Plug>(go-rename)
 
 " EasyMotion
 let g:EasyMotion_leader_key = '<Leader>'
