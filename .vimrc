@@ -21,6 +21,7 @@ Plugin 'digitaltoad/vim-jade'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'fatih/vim-go'
+Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
 
 " Themes
 Plugin 'esundahl/vim-pastel'
