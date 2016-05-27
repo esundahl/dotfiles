@@ -22,6 +22,8 @@ Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'fatih/vim-go'
 Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
+Plugin 'mxw/vim-jsx'
+Plugin 'isRuslan/vim-es6'
 
 " Themes
 Plugin 'esundahl/vim-pastel'
@@ -99,6 +101,9 @@ if has("autocmd")
     au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
       \| exe "normal! g`\"" | endif
 endif
+
+" JSX Syntax in .js files
+let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
 " Toggle paste mode
 nmap <silent> <F4> :set invpaste<CR>:set paste?<CR>
