@@ -17,14 +17,14 @@ function git_branch {
 
   if [[ $git_status =~ $on_branch ]]; then
     local branch=${BASH_REMATCH[1]}
-    echo "$branch"
+    echo "\[$PROMPT_COLOR_PRIMARY\](\[$PROMPT_COLOR_SECONDARY\]$branch\[$PROMPT_COLOR_PRIMARY\])"
   elif [[ $git_status =~ $on_commit ]]; then
     local commit=${BASH_REMATCH[1]}
-    echo "$commit"
+    echo "\[$PROMPT_COLOR_PRIMARY\](\[$PROMPT_COLOR_SECONDARY\]$commit\[$PROMPT_COLOR_PRIMARY\])"
   fi
 }
 
 PS1="\[$PROMPT_COLOR_PRIMARY\]\h\[$COLOR_WHITE\]:\[$PROMPT_COLOR_SECONDARY\]\W"
-PS1+="\[$PROMPT_COLOR_PRIMARY\](\[$PROMPT_COLOR_SECONDARY\]\$(git_branch)\[$PROMPT_COLOR_PRIMARY\])"           # prints current branch
-PS1+="\[$PROMPT_COLOR_SECONDARY\] → \[$COLOR_RESET\]"   # '#' for root, else '$'
+PS1+="$(git_branch)"
+PS1+="\[$PROMPT_COLOR_SECONDARY\] → \[$COLOR_RESET\]"
 export PS1
