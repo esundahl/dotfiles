@@ -13,11 +13,15 @@ call plug#begin('~/.vim/plugged')
 Plug 'esundahl/vim-pastel'
 
 " Tools
+Plug 'preservim/nerdtree' |
+            \ Plug 'Xuyuanp/nerdtree-git-plugin' |
+            \ Plug 'ryanoasis/vim-devicons'
+
 Plug 'junegunn/vim-easy-align'
-Plug 'preservim/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'preservim/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'pangloss/vim-javascript'
+Plug 'easymotion/vim-easymotion'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " Language
 Plug 'mxw/vim-jsx'
@@ -74,6 +78,7 @@ autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_
     \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 " Open the existing NERDTree on each new tab.
 autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
+let g:NERDTreeGitStatusUseNerdFonts = 1
 
 autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 
