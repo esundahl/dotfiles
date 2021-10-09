@@ -1,62 +1,40 @@
-" Required for Vundle
-set rtp+=~/.vim/bundle/Vundle.vim/
-call vundle#rc()
-Plugin 'gmarik/vundle'
 
-" Configuration
-Plugin 'tpope/vim-sensible'
-
-" Language
-Plugin 'pangloss/vim-javascript'
-Plugin 'tpope/vim-markdown'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'nono/vim-handlebars'
-Plugin 'tpope/vim-git'
-Plugin 'cakebaker/scss-syntax.vim'
-Plugin 'chrisbra/csv.vim'
-Plugin 'mmalecki/vim-node.js'
-Plugin 'groenewege/vim-less'
-Plugin 'wavded/vim-stylus'
-Plugin 'digitaltoad/vim-jade'
-Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'junegunn/vim-easy-align'
-Plugin 'fatih/vim-go'
-Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
-Plugin 'mxw/vim-jsx'
-Plugin 'isRuslan/vim-es6'
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Author:   Erik Sundahl
+" Twitter:  @esundahl
+" Website:  http://eriksundahl.com
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Specify a directory for plugins
+" - For Neovim: stdpath('data') . '/plugged'
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
 
 " Themes
-Plugin 'esundahl/vim-pastel'
+Plug 'esundahl/vim-pastel'
 
 " Tools
-Plugin 'scrooloose/syntastic'
-Plugin 'itspriddle/ZoomWin'
-Plugin 'mileszs/ack.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'tpope/vim-surround'
-Plugin 'majutsushi/tagbar'
-Plugin 'michaeljsmith/vim-indent-object'
-Plugin 'tpope/vim-endwise'
-Plugin 'ap/vim-css-color'
-Plugin 'kien/ctrlp.vim'
-Plugin 'tpope/vim-repeat'
-Plugin 'msanders/snipmate.vim'
-Plugin 'bronson/vim-trailing-whitespace'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'bling/vim-airline'
-Plugin 'esundahl/vim-snippets'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'spolu/dwm.vim'
-Plugin 'SirVer/ultisnips'
+Plug 'junegunn/vim-easy-align'
+Plug 'preservim/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'preservim/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'pangloss/vim-javascript'
 
-" Required for Vundle
-filetype plugin indent on
+" Language
+Plug 'mxw/vim-jsx'
+Plug 'vim-syntastic/syntastic'
+
+" keep last
+Plug 'ryanoasis/vim-devicons'
+
+
+" Initialize plugin system
+call plug#end()
 
 " Theme
 colorscheme pastel
 highlight SignColumn ctermbg=black
-let g:airline_theme='bubblegum'
+set guifont=Inconsolata:h12
+set background=dark
 
 " Set the mapleader key
 let mapleader = ","
@@ -72,9 +50,10 @@ set encoding=utf-8                " Set default encoding to UTF-8
 set nowrap                        " don't wrap lines
 set tabstop=2                     " a tab is two spaces
 set shiftwidth=2                  " an autoindent (with <<) is two spaces
-set expandtab                     " use spaces, not tabs
 set nolist                        " Hide invisible characters
 set backspace=indent,eol,start    " backspace through everything in insert mode
+set autoindent
+set smartindent
 
 " Searching
 set hlsearch                      " highlight matches
@@ -82,101 +61,54 @@ set incsearch                     " incremental searching
 set ignorecase                    " searches are case insensitive...
 set smartcase                     " ... unless they contain at least one capital letter
 
-" File Types
-if has("autocmd")
-  " In Makefiles, use real tabs, not tabs expanded to spaces
-  au FileType make setlocal noexpandtab
+" Copy default register to the system clipboard
+set clipboard=unnamed
 
-  " Make sure all mardown files have the correct filetype set and setup wrapping
-  au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown
-  if !exists("g:disable_markdown_autostyle")
-    au FileType markdown setlocal wrap linebreak textwidth=72 nolist
-  endif
+" NERDTree
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+" Open the existing NERDTree on each new tab.
+autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
 
-   " Treat JSON files like JavaScript
-   au BufNewFile,BufRead *.json set ft=javascript
+autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 
-    " Remember last location in file, but not for commit messages.
-    " " see :help last-position-jump
-    au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
-      \| exe "normal! g`\"" | endif
-endif
+" Fixes gitgutter color
+highlight SignColumn ctermbg=black
 
-" JSX Syntax in .js files
-let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+"Saves time; maps the spacebar to coln
+nmap <space> :
 
-" Toggle paste mode
-nmap <silent> <F4> :set invpaste<CR>:set paste?<CR>
-imap <silent> <F4> <ESC>:set invpaste<CR>:set paste?<CR>
-
-" format the entire file
-nnoremap <leader>fef :normal! gg=G``<CR>
-
-" upper/lower word
-nmap <leader>u mQviwU`Q
-nmap <leader>l mQviwu`Q
-
-" upper/lower first char of word
-nmap <leader>U mQgewvU`Q
-nmap <leader>L mQgewvu`Q
-
-
-" cd to the directory containing the file in the buffer
-nmap <silent> <leader>cd :lcd %:h<CR>
-
-" Create the directory containing the file in the buffer
-nmap <silent> <leader>md :!mkdir -p %:p:h<CR>
-
-" Some helpers to edit mode
-" http://vimcasts.org/e/14
-nmap <leader>ew :e <C-R>=expand('%:h').'/'<cr>
-nmap <leader>es :sp <C-R>=expand('%:h').'/'<cr>
-nmap <leader>ev :vsp <C-R>=expand('%:h').'/'<cr>
-nmap <leader>et :tabe <C-R>=expand('%:h').'/'<cr>
-
-" Swap two words
-nmap <silent> gw :s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR>`'
-
-" Underline the current line with '='
-nmap <silent> <leader>ul :t.<CR>Vr=
-
-" set text wrapping toggles
-nmap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
-
-" find merge conflict markers
-nmap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
-
-" Toggle hlsearch with <leader>hs
-nmap <leader>hs :set hlsearch! hlsearch?<CR>
-
-" Adjust viewports to the same size
-map <Leader>= <C-w>=
-
-" Status Line
-if has("statusline") && !&cp
-  set laststatus=2 " always show the status bar
-
-" Start the status line
-  set statusline=%f\ %m\ %r
-  set statusline+=Line:%l/%L[%p%%]
-  set statusline+=Col:%v
-  set statusline+=Buf:#%n
-  set statusline+=[%b][0x%B]
-endif
-
-" Smart way to move btw. windows
-map <C-j> :wincmd j<CR>
-map <C-k> :wincmd k<CR>
-map <C-h> :wincmd h<CR>
-map <C-l> :wincmd l<CR>
-
-" Use arrows for buffer switching
+" Use the arrows to something usefull
 map <right> :bn<cr>
 map <left> :bp<cr>
 
-" Saving & Quitting
-nmap <C-w> :w<CR>
-nmap <C-c> :wq<CR>
+" Folding options
+set foldmethod=indent " fold based on indent
+set foldnestmax=10    " deepest fold is 10 levels
+set nofoldenable      " don't fold by default
+set foldlevel=1
+
+" Smart way to move btw. windows
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+map <C-F> :call DWM_Focus()<CR>
+
+nnoremap <silent> <F8> :TagbarToggle<CR>
+
+" Fast saving and exiting
+nmap <leader>w :w<cr>
+nmap <leader>W :SudoWrite<cr>
+nmap <leader>q :q<cr>
+nmap <leader>Q :q!<cr>
+nmap <leader>x :x<cr>
+nmap <leader>X :SudoWrite<cr>:q<cr>
 
 " Strip Whitespace on Save
 autocmd BufWritePre * :%s/\s\+$//e
@@ -186,46 +118,14 @@ map <leader>1 :diffget LOCAL<CR>
 map <leader>2 :diffget BASE<CR>
 map <leader>3 :diffget REMOTE<CR>
 
+if exists(":Tabularize")
+  nmap <Leader>a= :Tabularize /=<CR>
+  vmap <Leader>a= :Tabularize /=<CR>
+  nmap <Leader>a: :Tabularize /:<CR>
+  vmap <Leader>a: :Tabularize /:<CR>
+endif
+
+set listchars=tab:▸\ ,eol:¬
+
 " Copy default register to the system clipboard
 set clipboard=unnamed
-
-" Fugitive
-nmap <Leader><Leader>gb :Gblame<CR>
-nmap <Leader><Leader>gs :Gstatus<CR>
-nmap <Leader><Leader>gd :Gdiff<CR>
-nmap <Leader><Leader>gl :Glog<CR>
-nmap <Leader><Leader>gc :Gcommit<CR>
-nmap <Leader><Leader>gp :Git push<CR>
-nmap <Leader><Leader>gw :Gwrite<CR>
-
-" Go-VIM
-au FileType go nmap <leader><leader>r <Plug>(go-run)
-au FileType go nmap <leader><leader>b <Plug>(go-build)
-au FileType go nmap <leader><leader>t <Plug>(go-test)
-au FileType go nmap <leader><leader>c <Plug>(go-coverage)
-au FileType go nmap <Leader><leader>ds <Plug>(go-def-split)
-au FileType go nmap <Leader><leader>dv <Plug>(go-def-vertical)
-au FileType go nmap <Leader><leader>dt <Plug>(go-def-tab)
-au FileType go nmap <Leader><leader>gd <Plug>(go-doc)
-au FileType go nmap <Leader><leader>gv <Plug>(go-doc-vertical)
-au FileType go nmap <Leader><leader>gb <Plug>(go-doc-browser)
-au FileType go nmap <Leader><leader>s <Plug>(go-implements)
-au FileType go nmap <Leader><leader>i <Plug>(go-info)
-au FileType go nmap <Leader><leader>e <Plug>(go-rename)
-
-" EasyMotion
-let g:EasyMotion_leader_key = '<Leader>'
-
-" Syntastic
-let g:syntastic_javascript_checkers = ['eslint']
-
-" DWM
-let g:dwm_map_keys=0
-nmap <C-n> :call DWM_New()<CR>
-nmap <C-f> :call DWM_Focus()<CR>
-
-" Easy Align
-" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
-vmap <Enter> <Plug>(EasyAlign)
-" Start interactive EasyAlign for a motion/text object (e.g. <Leader>aip)
- nmap <Leader>a <Plug>(EasyAlign)
