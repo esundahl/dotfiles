@@ -12,3 +12,12 @@ ln -sf $PWD/vimrc $HOME/.vimrc
 ln -sf $PWD/gitignore $HOME/.gitignore
 ln -sf $PWD/gitconfig $HOME/.gitconfig
 ln -sf $PWD/eslintrc $HOME/.eslintrc
+
+
+# Install Homebrew
+if [[ $OSTYPE == darwin* ]]; then
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	brew install nvm
+	brew install
+fi
+
