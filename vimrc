@@ -16,14 +16,13 @@ Plug 'esundahl/vim-pastel'
 Plug 'preservim/nerdtree' |
             \ Plug 'Xuyuanp/nerdtree-git-plugin' |
             \ Plug 'ryanoasis/vim-devicons'
-
 Plug 'junegunn/vim-easy-align'
-Plug 'pangloss/vim-javascript'
 Plug 'easymotion/vim-easymotion'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " Language
+Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'vim-syntastic/syntastic'
 
@@ -68,6 +67,7 @@ set smartcase                     " ... unless they contain at least one capital
 " Copy default register to the system clipboard
 set clipboard=unnamed
 
+
 " NERDTree
 nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
@@ -80,6 +80,17 @@ autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_
 autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
 let g:NERDTreeGitStatusUseNerdFonts = 1
 
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_html_tidy_exec = 'tidy5'
+
 autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 
 " Fixes gitgutter color
@@ -87,6 +98,11 @@ highlight SignColumn ctermbg=black
 
 "Saves time; maps the spacebar to coln
 nmap <space> :
+
+" Save buffer
+inoremap <F2> <C-\><C-o>:w<CR>
+nmap <F> :w<cr>
+
 
 " Use the arrows to something usefull
 map <right> :bn<cr>
